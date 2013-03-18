@@ -142,11 +142,17 @@
 				<h2>Thermal Flywheel</h2>
 				<p>By the use of thermal mass, heat energy can be stored to stablize greenhouse temperatures.</p>
 				<a href="#" class="da-link">Read more</a>
-				<div class="da-img"><img src="img/parallax-slider/twitter.png" alt="image01" /></div>
+				<div class="da-img"><img width="300px" height="300px" src="img/logo.png" alt="image01" /></div>
 			</div>
 			<div class="da-slide">
 				<h2>Inexpensive Glazings</h2>
 				<p>Implimenting commonly found materials, cheap solutions can be found for insulating and high light efficiency.</p>
+				<a href="#" class="da-link">Read more</a>
+				<div class="da-img"><img src="img/parallax-slider/responsive.png" alt="image02" /></div>
+			</div>
+			<div class="da-slide">
+				<h2>Soils Remediation</h2>
+				<p>Heavy metals, fuels, pollution, anything. We facilitate the remediation of these contaminants and more, returning the soil to a greater state of cleanliness than before it was contaminated.</p>
 				<a href="#" class="da-link">Read more</a>
 				<div class="da-img"><img src="img/parallax-slider/responsive.png" alt="image02" /></div>
 			</div>
@@ -522,7 +528,7 @@
 					
 					<h3>About Gosse Foundation</h3>
 					<p>
-						Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+						The Gosse Foundation endeavors to recreate, through innovation and simulation, sustainable agriculture in Newfoundland and Labrador, and beyond. By implimenting high-density farming techniques, a new dawn will shine upon those with the courage to embrase third world solutions to first world problems.
 					</p>
 						
 				</div>
