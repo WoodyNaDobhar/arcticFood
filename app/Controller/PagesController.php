@@ -69,6 +69,18 @@ class PagesController extends AppController {
 		if (!empty($path[$count - 1])) {
 			$title_for_layout = Inflector::humanize($path[$count - 1]);
 		}
+
+		//meta and title defaults
+		$title_for_layout = '';
+		
+		//not all pages get the same (meta)data
+		if($page == 'home'){
+			
+			$title_for_layout = 'Home';
+		}else if($page == 'about'){
+			
+			$title_for_layout = 'About Us';
+		}
 		$this->set(compact('page', 'subpage', 'title_for_layout'));
 		$this->render(implode('/', $path));
 	}

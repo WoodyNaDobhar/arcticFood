@@ -1,226 +1,274 @@
-<?php
-/**
- *
- * PHP 5
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       Cake.View.Pages
- * @since         CakePHP(tm) v 0.10.0.1076
- * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
- */
-if (!Configure::read('debug')):
-	throw new NotFoundException();
-endif;
-App::uses('Debugger', 'Utility');
-?>
-<iframe src="http://cakephp.org/bake-banner" width="830" height="160" style="overflow:hidden; border:none;">
-	<p>For updates and important announcements, visit http://cakefest.org</p>
-</iframe>
-<h2><?php echo __d('cake_dev', 'Release Notes for CakePHP %s.', Configure::version()); ?></h2>
-<a href="http://cakephp.org/changelogs/<?php echo Configure::version(); ?>"><?php echo __d('cake_dev', 'Read the changelog'); ?> </a>
-<?php
-if (Configure::read('debug') > 0):
-	Debugger::checkSecurityKeys();
-endif;
-?>
-<p id="url-rewriting-warning" style="background-color:#e32; color:#fff;">
-	<?php echo __d('cake_dev', 'URL rewriting is not properly configured on your server.'); ?>
-	1) <a target="_blank" href="http://book.cakephp.org/2.0/en/installation/advanced-installation.html#apache-and-mod-rewrite-and-htaccess" style="color:#fff;">Help me configure it</a>
-	2) <a target="_blank" href="http://book.cakephp.org/2.0/en/development/configuration.html#cakephp-core-configuration" style="color:#fff;">I don't / can't use URL rewriting</a>
-</p>
-<p>
-<?php
-	if (version_compare(PHP_VERSION, '5.2.8', '>=')):
-		echo '<span class="notice success">';
-			echo __d('cake_dev', 'Your version of PHP is 5.2.8 or higher.');
-		echo '</span>';
-	else:
-		echo '<span class="notice">';
-			echo __d('cake_dev', 'Your version of PHP is too low. You need PHP 5.2.8 or higher to use CakePHP.');
-		echo '</span>';
-	endif;
-?>
-</p>
-<p>
-	<?php
-		if (is_writable(TMP)):
-			echo '<span class="notice success">';
-				echo __d('cake_dev', 'Your tmp directory is writable.');
-			echo '</span>';
-		else:
-			echo '<span class="notice">';
-				echo __d('cake_dev', 'Your tmp directory is NOT writable.');
-			echo '</span>';
-		endif;
-	?>
-</p>
-<p>
-	<?php
-		$settings = Cache::settings();
-		if (!empty($settings)):
-			echo '<span class="notice success">';
-				echo __d('cake_dev', 'The %s is being used for core caching. To change the config edit APP/Config/core.php ', '<em>'. $settings['engine'] . 'Engine</em>');
-			echo '</span>';
-		else:
-			echo '<span class="notice">';
-				echo __d('cake_dev', 'Your cache is NOT working. Please check the settings in APP/Config/core.php');
-			echo '</span>';
-		endif;
-	?>
-</p>
-<p>
-	<?php
-		$filePresent = null;
-		if (file_exists(APP . 'Config' . DS . 'database.php')):
-			echo '<span class="notice success">';
-				echo __d('cake_dev', 'Your database configuration file is present.');
-				$filePresent = true;
-			echo '</span>';
-		else:
-			echo '<span class="notice">';
-				echo __d('cake_dev', 'Your database configuration file is NOT present.');
-				echo '<br/>';
-				echo __d('cake_dev', 'Rename APP/Config/database.php.default to APP/Config/database.php');
-			echo '</span>';
-		endif;
-	?>
-</p>
-<?php
-if (isset($filePresent)):
-	App::uses('ConnectionManager', 'Model');
-	try {
-		$connected = ConnectionManager::getDataSource('default');
-	} catch (Exception $connectionError) {
-		$connected = false;
-		$errorMsg = $connectionError->getMessage();
-		if (method_exists($connectionError, 'getAttributes')) {
-			$attributes = $connectionError->getAttributes();
-			if (isset($errorMsg['message'])) {
-				$errorMsg .= '<br />' . $attributes['message'];
-			}
-		}
-	}
-?>
-<p>
-	<?php
-		if ($connected && $connected->isConnected()):
-			echo '<span class="notice success">';
-	 			echo __d('cake_dev', 'Cake is able to connect to the database.');
-			echo '</span>';
-		else:
-			echo '<span class="notice">';
-				echo __d('cake_dev', 'Cake is NOT able to connect to the database.');
-				echo '<br /><br />';
-				echo $errorMsg;
-			echo '</span>';
-		endif;
-	?>
-</p>
-<?php endif; ?>
-<?php
-	App::uses('Validation', 'Utility');
-	if (!Validation::alphaNumeric('cakephp')) {
-		echo '<p><span class="notice">';
-			echo __d('cake_dev', 'PCRE has not been compiled with Unicode support.');
-			echo '<br/>';
-			echo __d('cake_dev', 'Recompile PCRE with Unicode support by adding <code>--enable-unicode-properties</code> when configuring');
-		echo '</span></p>';
-	}
-?>
 
-<p>
-	<?php
-		if (CakePlugin::loaded('DebugKit')):
-			echo '<span class="notice success">';
-				echo __d('cake_dev', 'DebugKit plugin is present');
-			echo '</span>';
-		else:
-			echo '<span class="notice">';
-				echo __d('cake_dev', 'DebugKit is not installed. It will help you inspect and debug different aspects of your application.');
-				echo '<br/>';
-				echo __d('cake_dev', 'You can install it from %s', $this->Html->link('github', 'https://github.com/cakephp/debug_kit'));
-			echo '</span>';
-		endif;
-	?>
-</p>
+	
+	<!-- start: Slider -->
+	<div class="slider-wrapper">
 
-<h3><?php echo __d('cake_dev', 'Editing this Page'); ?></h3>
-<p>
-<?php
-echo __d('cake_dev', 'To change the content of this page, edit: APP/View/Pages/home.ctp.<br />
-To change its layout, edit: APP/View/Layouts/default.ctp.<br />
-You can also add some CSS styles for your pages at: APP/webroot/css.');
-?>
-</p>
+		<div id="da-slider" class="da-slider">
+			<div class="da-slide">
+				<h2>Thermal Flywheel</h2>
+				<p>By the use of thermal mass, heat energy can be stored to stablize greenhouse temperatures.</p>
+				<a href="#" class="da-link">Read more</a>
+				<div class="da-img"><img width="300px" height="300px" src="img/logo.png" alt="image01" /></div>
+			</div>
+			<div class="da-slide">
+				<h2>Inexpensive Glazings</h2>
+				<p>Implimenting commonly found materials, cheap solutions can be found for insulating and high light efficiency.</p>
+				<a href="#" class="da-link">Read more</a>
+				<div class="da-img"><img src="img/parallax-slider/responsive.png" alt="image02" /></div>
+			</div>
+			<div class="da-slide">
+				<h2>Soils Remediation</h2>
+				<p>Heavy metals, fuels, pollution, anything. We facilitate the remediation of these contaminants and more, returning the soil to a greater state of cleanliness than before it was contaminated.</p>
+				<a href="#" class="da-link">Read more</a>
+				<div class="da-img"><img src="img/parallax-slider/responsive.png" alt="image02" /></div>
+			</div>
+			<div class="da-slide">
+				<h2>High-Density Farming</h2>
+				<p>Biomimicry, aquaponics, superfoods, companion cropping. How to feed thousands per acre of planted area.</p>
+				<a href="#" class="da-link">Read more</a>
+				<div class="da-img"><img src="img/parallax-slider/html5.png" alt="image03" /></div>
+			</div>
+			<div class="da-slide">
+				<h2>Hot-Compost</h2>
+				<p>Water can be boiled, and greenhouses heated, using biodegrading waste with four products: CO2, Methane, Heat and Soil.</p>
+				<a href="#" class="da-link">Read more</a>
+				<div class="da-img"><img src="img/parallax-slider/css3.png" alt="image04" /></div>
+			</div>
+			<nav class="da-arrows">
+				<span class="da-arrows-prev"></span>
+				<span class="da-arrows-next"></span>
+			</nav>
+		</div>
+		
+	</div>
+	<!-- end: Slider -->
+			
+	<!--start: Wrapper-->
+	<div id="wrapper">
+				
+		<!--start: Container -->
+    	<div class="container">
+			
+			<hr>
+	
+      		<!-- start: Hero Unit - Main hero unit for a primary marketing message or call to action -->
+      		<div class="hero-unit">
+        		<iframe style="float:right" width="420" height="315" src="http://www.youtube.com/embed/jkJAbsgYlXU" frameborder="0" allowfullscreen></iframe>
+				<h3>
+					The Gosse Foundation endeavors to recreate, through innovation and simulation, sustainable agriculture in Newfoundland and Labrador, and beyond. By implimenting high-density farming techniques, a new dawn will shine upon those with the courage to embrase third world solutions to first world problems.
+				</h3>
+        		<p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+				<div style="clear:both;"></div>
+      		</div>
+			<!-- end: Hero Unit -->
+      		
+			<hr>
+			
+			<!-- start: Row -->
+			<div class="row">
+				
+				<!-- start: Icon Boxes -->
+				<div class="icons-box-vert-container">
 
-<h3><?php echo __d('cake_dev', 'Getting Started'); ?></h3>
-<p>
-	<?php
-		echo $this->Html->link(
-			sprintf('<strong>%s</strong> %s', __d('cake_dev', 'New'), __d('cake_dev', 'CakePHP 2.0 Docs')),
-			'http://book.cakephp.org/2.0/en/',
-			array('target' => '_blank', 'escape' => false)
-		);
-	?>
-</p>
-<p>
-	<?php
-		echo $this->Html->link(
-			__d('cake_dev', 'The 15 min Blog Tutorial'),
-			'http://book.cakephp.org/2.0/en/tutorials-and-examples/blog/blog.html',
-			array('target' => '_blank', 'escape' => false)
-		);
-	?>
-</p>
+					<!-- start: Icon Box Start -->
+					<div class="span4">
+						<div class="icons-box-vert">
+							<i class="ico-briefcase ico-white circle-color-full"></i>
+							<div class="icons-box-vert-info">
+								<h3>Entrepreneurs!</h3>
+								<p>Own a business? Get involved! Check out Participate! and see how your hand can guide our work!</p>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<!-- end: Icon Box-->
 
-<h3><?php echo __d('cake_dev', 'Official Plugins'); ?></h3>
-<p>
-<ul>
-	<li>
-		<?php echo $this->Html->link('DebugKit', 'https://github.com/cakephp/debug_kit') ?>:
-		<?php echo __d('cake_dev', 'provides a debugging toolbar and enhanced debugging tools for CakePHP applications.'); ?>
-	</li>
-	<li>
-		<?php echo $this->Html->link('Localized', 'https://github.com/cakephp/localized') ?>:
-		<?php echo __d('cake_dev', 'contains various localized validation classes and translations for specific countries'); ?>
-	</li>
-</ul>
-</p>
+					<!-- start: Icon Box Start -->
+					<div class="span4">
+						<div class="icons-box-vert">
+							<i class="ico-hospital  ico-white circle-color-full"></i>
+							<div class="icons-box-vert-info">
+								<h3>Charities!</h3>
+								<p>Does your charity or tournament require resources? Perhaps we can raise money for your needs!</p>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<!-- end: Icon Box -->
 
-<h3><?php echo __d('cake_dev', 'More about Cake'); ?></h3>
-<p>
-<?php echo __d('cake_dev', 'CakePHP is a rapid development framework for PHP which uses commonly known design patterns like Active Record, Association Data Mapping, Front Controller and MVC.'); ?>
-</p>
-<p>
-<?php echo __d('cake_dev', 'Our primary goal is to provide a structured framework that enables PHP users at all levels to rapidly develop robust web applications, without any loss to flexibility.'); ?>
-</p>
+					<!-- start: Icon Box Start -->
+					<div class="span4">
+						<div class="icons-box-vert">
+							<i class="ico-leaf ico-white circle-color-full"></i>
+							<div class="icons-box-vert-info">
+								<h3>Innovators!</h3>
+								<p>Challenge our work and correct our numbers. We can integrate you into our organization!</p>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<!-- end: Icon Box -->
 
-<ul>
-	<li><a href="http://cakefoundation.org/"><?php echo __d('cake_dev', 'Cake Software Foundation'); ?> </a>
-	<ul><li><?php echo __d('cake_dev', 'Promoting development related to CakePHP'); ?></li></ul></li>
-	<li><a href="http://www.cakephp.org"><?php echo __d('cake_dev', 'CakePHP'); ?> </a>
-	<ul><li><?php echo __d('cake_dev', 'The Rapid Development Framework'); ?></li></ul></li>
-	<li><a href="http://book.cakephp.org"><?php echo __d('cake_dev', 'CakePHP Documentation'); ?> </a>
-	<ul><li><?php echo __d('cake_dev', 'Your Rapid Development Cookbook'); ?></li></ul></li>
-	<li><a href="http://api20.cakephp.org"><?php echo __d('cake_dev', 'CakePHP API'); ?> </a>
-	<ul><li><?php echo __d('cake_dev', 'Quick Reference'); ?></li></ul></li>
-	<li><a href="http://bakery.cakephp.org"><?php echo __d('cake_dev', 'The Bakery'); ?> </a>
-	<ul><li><?php echo __d('cake_dev', 'Everything CakePHP'); ?></li></ul></li>
-	<li><a href="http://plugins.cakephp.org"><?php echo __d('cake_dev', 'CakePHP plugins repo'); ?> </a>
-	<ul><li><?php echo __d('cake_dev', 'A comprehensive list of all CakePHP plugins created by the community'); ?></li></ul></li>
-	<li><a href="http://groups.google.com/group/cake-php"><?php echo __d('cake_dev', 'CakePHP Google Group'); ?> </a>
-	<ul><li><?php echo __d('cake_dev', 'Community mailing list'); ?></li></ul></li>
-	<li><a href="irc://irc.freenode.net/cakephp">irc.freenode.net #cakephp</a>
-	<ul><li><?php echo __d('cake_dev', 'Live chat about CakePHP'); ?></li></ul></li>
-	<li><a href="http://github.com/cakephp/"><?php echo __d('cake_dev', 'CakePHP Code'); ?> </a>
-	<ul><li><?php echo __d('cake_dev', 'For the Development of CakePHP Git repository, Downloads'); ?></li></ul></li>
-	<li><a href="http://cakephp.lighthouseapp.com/"><?php echo __d('cake_dev', 'CakePHP Lighthouse'); ?> </a>
-	<ul><li><?php echo __d('cake_dev', 'CakePHP Tickets, Wiki pages, Roadmap'); ?></li></ul></li>
-</ul>
+				</div>
+				<!-- end: Icon Boxes -->
+				<div class="clear"></div>
+			</div>
+			<!-- end: Row -->
+			
+			<hr>
+			
+			<!-- start: Row -->
+      		<div class="row">
+	
+				<div class="span9">
+					
+					<div class="title"><h3>Our Charities</h3></div>
+					
+					<!-- start: Row -->
+		      		<div class="row">
+			
+						<div class="span3">
+	
+							<div class="picture">
+								<a href="http://www.heartandstroke.nf.ca/site/c.inKLKTOwHoE/b.3654439/k.F8C1/Heart_Disease_Stroke_and_Healthy_Living.htm" title="Heart & Stroke Foundation" target="_blank">
+									<img src="http://www.heartandstroke.nf.ca/atf/cf/%7BC4E49B23-69E6-45EB-B5F1-D4333E366D9A%7D/HSFLOGO.gif" >
+									<div class="image-overlay-zoom"></div>
+								</a>
+							</div>
+							<div class="item-description">
+								<h4><a href="#">Heart & Stroke Foundation</a></h4>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+							</div>
+					
+        				</div>
+			
+						<div class="span3">
+	
+							<div class="picture">
+								<a href="http://www.cancer.ca/newfoundland-labrador.aspx" title="Canadian Cancer Society" target="_blank">
+									<img src="http://www.cancer.ca/~/media/CCS/Global/Design/Splash%20Logo/CCS%20Splash%20Logo.ashx?as=0&dmc=0&h=96&thn=0&w=211" >
+									<div class="image-overlay-zoom"></div>
+								</a>
+							</div>
+							<div class="item-description">
+								<h4><a href="#">Canadian Cancer Society</a></h4>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+							</div>
+					
+        				</div>
+			
+						<div class="span3">
+	
+							<div class="picture">
+								<a href="http://www.autism.nf.net/" title="Autism Society of NL" target="_blank">
+									<img src="http://www.autism.nf.net/wp-content/themes/autismsociety/images/logo.png" >
+									<div class="image-overlay-zoom"></div>
+								</a>
+							</div>
+							<div class="item-description">
+								<h4><a href="#">Autism Society of NL</a></h4>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+							</div>
+					
+        				</div>
+			
+						<div class="span3">
+	
+							<div class="picture">
+								<a href="http://www.redcross.ca/article.asp?id=6121&tid=064" rel="image" title="Canadian Red Cross">
+									<img src="http://www.redcross.ca/crc2008/images/logo.gif" target="_blank" >
+									<div class="image-overlay-zoom"></div>
+								</a>
+							</div>
+							<div class="item-description">
+								<h4><a href="#">Canadian Red Cross</a></h4>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+							</div>
+					
+        				</div>
+			
+						<div class="span3">
+	
+							<div class="picture">
+								<a href="http://www.janewayfoundation.nf.ca/" title="Janeway Children's Hospital Foundation">
+									<img src="http://www.janewayfoundation.nf.ca/wp-content/themes/janeway/images/logo.png" target="_blank" >
+									<div class="image-overlay-zoom"></div>
+								</a>
+							</div>
+							<div class="item-description">
+								<h4><a href="#">Janeway Children's Hospital Foundation</a></h4>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+							</div>
+					
+        				</div>
+			
+						<div class="span3">
+	
+							<div class="picture">
+								<a href="http://grenfell.mun.ca/Pages/default.aspx" title="Speaker Name">
+									<img src="http://grenfell.mun.ca/Style%20Library/Grenfell/logo.png" target="_blank" >
+									<div class="image-overlay-zoom"></div>
+								</a>
+							</div>
+							<div class="item-description">
+								<h4><a href="#">Grenfell Memorial University</a></h4>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+							</div>
+					
+        				</div>
+					
+        			</div>
+					<!-- end: Row -->
+
+				</div>
+
+        		<div class="span3">
+					
+					<!-- start: Testimonials-->
+
+					<div class="testimonial-container">
+
+						<div class="title"><h3>Testimonials</h3></div>
+
+							<div class="testimonials-carousel" data-autorotate="3000">
+
+								<ul class="carousel">
+
+									<li class="testimonial">
+										<div class="testimonials">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</div>
+										<div class="testimonials-bg"></div>
+										<div class="testimonials-author">Lucas Luck, <span>CEO</span></div>
+									</li>
+
+									<li class="testimonial">
+										<div class="testimonials">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </div>
+										<div class="testimonials-bg"></div>
+										<div class="testimonials-author">Lucas Luck, <span>CTO</span></div>
+									</li>
+
+									<li class="testimonial">
+										<div class="testimonials">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</div>
+										<div class="testimonials-bg"></div>
+										<div class="testimonials-author">Lucas Luck, <span>COO</span></div>
+									</li>
+
+									<li class="testimonial">
+										<div class="testimonials">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</div>
+										<div class="testimonials-bg"></div>
+										<div class="testimonials-author">Lucas Luck, <span>CMO</span></div>
+									</li>
+
+								</ul>
+
+							</div>
+
+						</div>
+
+					<!-- end: Testimonials-->
+					
+        		</div>
+
+      		</div>
+			<!-- end: Row -->
+			
+			<hr>
