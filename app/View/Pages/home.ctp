@@ -3,41 +3,23 @@
 	<!-- start: Slider -->
 	<div class="slider-wrapper">
 
-		<div id="da-slider" class="da-slider">
+		<div id="da-slider" class="da-slider"><?php 
+		
+			foreach($splashes as $splash){
+				
+				$image = $splash['Splash']['image']?'<div class="da-img"><img width="300px" height="300px" src="img/uploads/'.$splash['Splash']['image'].'" alt="'.$splash['Splash']['title'].'" /></div>':'';
+				$link = $splash['Splash']['link']?'<a href="'.$splash['Splash']['image'].'" class="da-link">Read more</a>':'';
+				
+				echo '
 			<div class="da-slide">
-				<h2>Thermal Flywheel</h2>
-				<p>By the use of thermal mass, heat energy can be stored to stablize greenhouse temperatures.</p>
-				<a href="#" class="da-link">Read more</a>
-				<div class="da-img"><img width="300px" height="300px" src="img/logo.png" alt="image01" /></div>
-			</div>
-			<div class="da-slide">
-				<h2>Inexpensive Glazings</h2>
-				<p>Implimenting commonly found materials, cheap solutions can be found for insulating and high light efficiency.</p>
-				<a href="#" class="da-link">Read more</a>
-				<div class="da-img"><img src="img/parallax-slider/responsive.png" alt="image02" /></div>
-			</div>
-			<div class="da-slide">
-				<h2>Soils Remediation</h2>
-				<p>Heavy metals, fuels, pollution, anything. We facilitate the remediation of these contaminants and more, returning the soil to a greater state of cleanliness than before it was contaminated.</p>
-				<a href="#" class="da-link">Read more</a>
-				<div class="da-img"><img src="img/parallax-slider/responsive.png" alt="image02" /></div>
-			</div>
-			<div class="da-slide">
-				<h2>High-Density Farming</h2>
-				<p>Biomimicry, aquaponics, superfoods, companion cropping. How to feed thousands per acre of planted area.</p>
-				<a href="#" class="da-link">Read more</a>
-				<div class="da-img"><img src="img/parallax-slider/html5.png" alt="image03" /></div>
-			</div>
-			<div class="da-slide">
-				<h2>Hot-Compost</h2>
-				<p>Water can be boiled, and greenhouses heated, using biodegrading waste with four products: CO2, Methane, Heat and Soil.</p>
-				<a href="#" class="da-link">Read more</a>
-				<div class="da-img"><img src="img/parallax-slider/css3.png" alt="image04" /></div>
-			</div>
-			<nav class="da-arrows">
-				<span class="da-arrows-prev"></span>
-				<span class="da-arrows-next"></span>
-			</nav>
+				<h2>'.$splash['Splash']['title'].'</h2>
+				<p>'.$splash['Splash']['data'].'</p>
+				'.$link.'
+				'.$image.'
+			</div>';
+			}
+		
+		?>
 		</div>
 		
 	</div>
@@ -125,97 +107,29 @@
 					<div class="title"><h3>Our Charities</h3></div>
 					
 					<!-- start: Row -->
-		      		<div class="row">
-			
+		      		<div class="row"><?php 
+		      		
+		      			foreach($charities as $charity){
+		      		
+			      			echo '
+				
 						<div class="span3">
 	
 							<div class="picture">
-								<a href="http://www.heartandstroke.nf.ca/site/c.inKLKTOwHoE/b.3654439/k.F8C1/Heart_Disease_Stroke_and_Healthy_Living.htm" title="Heart & Stroke Foundation" target="_blank">
-									<img src="http://www.heartandstroke.nf.ca/atf/cf/%7BC4E49B23-69E6-45EB-B5F1-D4333E366D9A%7D/HSFLOGO.gif" >
+								<a href="'.$charity['Charity']['link'].'" title="'.$charity['Charity']['name'].'" target="_blank">
+									<img src="img/uploads/'.$charity['Charity']['logo'].'" >
 									<div class="image-overlay-zoom"></div>
 								</a>
 							</div>
 							<div class="item-description">
-								<h4><a href="#">Heart & Stroke Foundation</a></h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+								<h4><a href="#">'.$charity['Charity']['name'].'</a></h4>
+								<p>'.$charity['Charity']['description'].'</p>
 							</div>
 					
-        				</div>
-			
-						<div class="span3">
-	
-							<div class="picture">
-								<a href="http://www.cancer.ca/newfoundland-labrador.aspx" title="Canadian Cancer Society" target="_blank">
-									<img src="http://www.cancer.ca/~/media/CCS/Global/Design/Splash%20Logo/CCS%20Splash%20Logo.ashx?as=0&dmc=0&h=96&thn=0&w=211" >
-									<div class="image-overlay-zoom"></div>
-								</a>
-							</div>
-							<div class="item-description">
-								<h4><a href="#">Canadian Cancer Society</a></h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-							</div>
-					
-        				</div>
-			
-						<div class="span3">
-	
-							<div class="picture">
-								<a href="http://www.autism.nf.net/" title="Autism Society of NL" target="_blank">
-									<img src="http://www.autism.nf.net/wp-content/themes/autismsociety/images/logo.png" >
-									<div class="image-overlay-zoom"></div>
-								</a>
-							</div>
-							<div class="item-description">
-								<h4><a href="#">Autism Society of NL</a></h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-							</div>
-					
-        				</div>
-			
-						<div class="span3">
-	
-							<div class="picture">
-								<a href="http://www.redcross.ca/article.asp?id=6121&tid=064" rel="image" title="Canadian Red Cross">
-									<img src="http://www.redcross.ca/crc2008/images/logo.gif" target="_blank" >
-									<div class="image-overlay-zoom"></div>
-								</a>
-							</div>
-							<div class="item-description">
-								<h4><a href="#">Canadian Red Cross</a></h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-							</div>
-					
-        				</div>
-			
-						<div class="span3">
-	
-							<div class="picture">
-								<a href="http://www.janewayfoundation.nf.ca/" title="Janeway Children's Hospital Foundation">
-									<img src="http://www.janewayfoundation.nf.ca/wp-content/themes/janeway/images/logo.png" target="_blank" >
-									<div class="image-overlay-zoom"></div>
-								</a>
-							</div>
-							<div class="item-description">
-								<h4><a href="#">Janeway Children's Hospital Foundation</a></h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-							</div>
-					
-        				</div>
-			
-						<div class="span3">
-	
-							<div class="picture">
-								<a href="http://grenfell.mun.ca/Pages/default.aspx" title="Speaker Name">
-									<img src="http://grenfell.mun.ca/Style%20Library/Grenfell/logo.png" target="_blank" >
-									<div class="image-overlay-zoom"></div>
-								</a>
-							</div>
-							<div class="item-description">
-								<h4><a href="#">Grenfell Memorial University</a></h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-							</div>
-					
-        				</div>
+        				</div>';
+		      			}
+		      		
+		      		?>
 					
         			</div>
 					<!-- end: Row -->
@@ -232,31 +146,24 @@
 
 							<div class="testimonials-carousel" data-autorotate="3000">
 
-								<ul class="carousel">
-
+								<ul class="carousel"><?php 
+		      		
+		      			foreach($testimonials as $testimonial){
+		      				
+		      				//to make the quoter pretty...
+		      				$quoterArray = explode(' ', $testimonial['Testimonial']['quoter']);
+		      				$quoterLast = array_pop($quoterArray);
+		      				$quoter = implode(' ', $quoterArray).' <span>'.$quoterLast.'</span>';
+		      		
+			      			echo '
 									<li class="testimonial">
-										<div class="testimonials">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</div>
+										<div class="testimonials">'.$testimonial['Testimonial']['quote'].'</div>
 										<div class="testimonials-bg"></div>
-										<div class="testimonials-author">Lucas Luck, <span>CEO</span></div>
-									</li>
-
-									<li class="testimonial">
-										<div class="testimonials">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </div>
-										<div class="testimonials-bg"></div>
-										<div class="testimonials-author">Lucas Luck, <span>CTO</span></div>
-									</li>
-
-									<li class="testimonial">
-										<div class="testimonials">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</div>
-										<div class="testimonials-bg"></div>
-										<div class="testimonials-author">Lucas Luck, <span>COO</span></div>
-									</li>
-
-									<li class="testimonial">
-										<div class="testimonials">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</div>
-										<div class="testimonials-bg"></div>
-										<div class="testimonials-author">Lucas Luck, <span>CMO</span></div>
-									</li>
+										<div class="testimonials-author">'.$quoter.'</div>
+									</li>';
+		      			}
+		      		
+		      		?>
 
 								</ul>
 

@@ -31,6 +31,11 @@ App::uses('AppController', 'Controller');
  */
 class PagesController extends AppController {
 
+	public function beforeFilter(){
+		parent::beforeFilter();
+		$this->Auth->allow('display');
+	}
+
 /**
  * Controller name
  *
@@ -76,7 +81,19 @@ class PagesController extends AppController {
 		//not all pages get the same (meta)data
 		if($page == 'home'){
 			
+			//setup
 			$title_for_layout = 'Home';
+			Controller::loadModel('Splash');
+			Controller::loadModel('Charity');
+			Controller::loadModel('Testimonial');
+			$this->Charity->recursive = -1;
+			$this->Splash->recursive = -1;
+			$this->Testimonial->recursive = -1;
+			
+			$splashes = $this->Splash->find('all');
+			$charities = $this->Charity->find('all');
+			$testimonials = $this->Testimonial->find('all');
+			$this->set(compact('splashes','charities','testimonials'));
 		}else if($page == 'about'){
 			
 			$title_for_layout = 'About Us';

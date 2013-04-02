@@ -26,10 +26,11 @@
 	<!-- end: Facebook Open Graph -->
 
     <!-- start: CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
-	<link href="css/parallax-slider.css" rel="stylesheet">
+    <link href="/css/default.css" rel="stylesheet">
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="/css/style.css" rel="stylesheet">
+	<link href="/css/parallax-slider.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo">
@@ -62,10 +63,10 @@
 	            		<span class="icon-bar"></span>
 	            		<span class="icon-bar"></span>
 	          		</a>
-					<a class="brand" href=""><i class="ico-snowflake circle"></i>gosse<span>FOUND</span>.</a>
+					<a class="brand" href="/"><i class="ico-snowflake circle"></i>gosse<span>FOUND</span>.</a>
 	          		<div class="nav-collapse collapse">
 	            		<ul class="nav">
-	              			<li><a href="">Home</a></li>
+	              			<li><a href="/">Home</a></li>
 							<li class="dropdown">
 	                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">About the Foundation<b class="caret"></b></a>
 	                			<ul class="dropdown-menu">

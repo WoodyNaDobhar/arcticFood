@@ -395,6 +395,8 @@ form .error-message {
 	text-shadow: none;
 }
 
+/**TODO: integrate cake design elements
+
 /** Notices and Errors **/
 .message {
 	clear: both;
